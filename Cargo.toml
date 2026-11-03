@@ -4,3 +4,27 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+tokio = { version = "1.52", features = [
+    "rt-multi-thread",
+    "macros",
+    "fs",
+    "io-util",
+    "io-std",
+    "sync",
+] }
+yt-dlp = { version = "2.10", features = ["cache-json", "rustls"] }
+lofty = "0.25"
+musicbrainz_rs = { version = "0.14", default-features = false, features = ["async", "rustls"] }
+emdb = { version = "1.0", features = ["async"] }
+clap = { version = "4.6", features = ["derive"] }
+indicatif = "0.18"
+thiserror = "2"
+anyhow = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+strip = true
